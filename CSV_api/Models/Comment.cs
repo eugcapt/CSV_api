@@ -1,15 +1,19 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
 
-namespace CSV_api.Models
+namespace CSV_api.Models;
+
+public partial class Comment
 {
-    public class Comment
-    {
-        public int CommentId { get; set; }
-        public string CommentText { get; set; }
-        public DateOnly CreationDate { get; set; }
-        public DateOnly updateDate { get; set;}
+    public int? CommentId { get; set; }
 
-        public int TaskID {  get; set; }
-        public Task? Task { get; set; }
-    }
+    public string Text { get; set; } = null!;
+
+    public DateTime CreationDate { get; set; }
+
+    public DateTime? UpdateDate { get; set; }
+
+    public int? TaskId { get; set; }
+
+    public virtual Task? Task { get; set; }
 }

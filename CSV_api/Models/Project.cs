@@ -1,16 +1,21 @@
-﻿
-namespace CSV_api.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace CSV_api.Models;
+
+public partial class Project
 {
-    public class Project
-    {
-        public int ProjectID { get; set; }
-        public required string ProjectName { get; set; }
-        public string? Description { get; set; }
-        public required DateOnly CreatedDate { get; set; }
-        public DateOnly? UpdateDate { get; set; }
+    public int ProjectId { get; set; }
 
-        public ICollection<User> Users { get; set; } = new List<User>();
-        public ICollection<Task> Task { get; set; } = new List<Task>();
+    public string Name { get; set; } = null!;
 
-    }
+    public string? Description { get; set; }
+
+    public DateTime CreationDate { get; set; }
+
+    public DateTime? UpdateDate { get; set; }
+
+    public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
+
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

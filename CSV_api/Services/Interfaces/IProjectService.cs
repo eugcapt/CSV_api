@@ -1,18 +1,20 @@
-﻿using CSV_api.Models;
+﻿//using CSV_api.Models;
+
+using CSV_api.Models;
 
 namespace CSV_api.Services.Interfaces
 {
     public interface IProjectService
     {
-        Task<IEnumerable<Project>> GetAll();
-        System.Threading.Tasks.Task Create(Project project);
-        System.Threading.Tasks.Task Delete(Project project);
-        System.Threading.Tasks.Task Update(Project project);
-        System.Threading.Tasks.Task GetProjectDescription(int id);
-        System.Threading.Tasks.Task UpdateProjectDescription(int id, string description);
-        System.Threading.Tasks.Task AddUserToProject(int id, int userID);
-        System.Threading.Tasks.Task DeleteUserFromProject(int id, int userID);
-        System.Threading.Tasks.Task GetAllUsers(int id);
-
+        public List<Project> GetAll();
+        public Project GetById(int id);
+        public Project Create(Project project);
+        public void Delete(int id);
+        public ProjectDescriptionDto GetProjectDescription(int id);
+        public Project UpdateProjectDescription(int id,string description, ProjectDescriptionDto project);
+        public User AddUserToProject(int userId, int projectId, UserUpdateProjectDto user);
+        public void DeleteUserFromProject(int userID);
+        public List<User> GetAllUsers(int id);
+        
     }
 }

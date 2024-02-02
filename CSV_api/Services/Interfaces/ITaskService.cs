@@ -1,11 +1,15 @@
-﻿namespace CSV_api.Services.Interfaces
+﻿using CSV_api.Models;
+
+namespace CSV_api.Services.Interfaces
 {
     public interface ITaskService
     {
-        Task<IEnumerable<Task>> GetTasks(int projectID);
-        Task Create(int projectID);
-        Task Update(int taskID, int projectID);
-        Task Delete(int taskID, int projectID);
-        Task<IEnumerable<Task>> GetTasks(int projectID, Constants.Constants.StatusCodes statusCode);
+        public List<Models.Task> GetAll(int projectID);
+        public Models.Task Create(Models.Task task);
+        
+        public void Delete(int taskID);
+        List<Models.Task> GetTasksByCode(byte statusCode);
+        public Models.Task GetOneTasksById(int id);
+        public Models.Task Update(TaskDto task);
     }
 }

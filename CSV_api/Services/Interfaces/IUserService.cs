@@ -4,12 +4,13 @@ namespace CSV_api.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetAll();
-        Task<User> GetById(int id);
-        System.Threading.Tasks.Task Create(User user);
-        System.Threading.Tasks.Task Update(User user);
-        System.Threading.Tasks.Task Delete(int id);
-        Task<IEnumerable<User>> GetProjectUsers(Project project);
-        System.Threading.Tasks.Task GetUserDescription(int id);
+        public List<User> GetAll();
+        public User GetById(int id);
+        public User Create(User user);
+        public User Update(User user);
+        public void Delete(int id);
+        public List<User> GetProjectUsers(int projectID);
+        public UserDescriptionDto GetUserDescription(int id);
+        
     }
 }

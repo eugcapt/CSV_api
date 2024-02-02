@@ -1,17 +1,25 @@
-﻿namespace CSV_api.Models
-{
-    public class User
-    {
-        public int UserID { get; set; }
-        public string Login { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public required string Email { get; set; }
-        public required DateOnly RegDate { get; set; }
-        public DateOnly? UpdateDate { get; set; }
+﻿using System;
+using System.Collections.Generic;
 
-        //foreign table navigation
-        public int ProjectID { get; set; }
-        public Project? Project { get; set; }
-    }
+namespace CSV_api.Models;
+
+public partial class User
+{
+    public int UserId { get; set; }
+
+    public string? Login { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public string? Surname { get; set; }
+
+    public string Email { get; set; } = null!;
+
+    public DateTime RegDate { get; set; }
+
+    public DateTime? UpdateDate { get; set; }
+
+    public int? ProjectId { get; set; }
+
+    public virtual Project? Project { get; set; }
 }

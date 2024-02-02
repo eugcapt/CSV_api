@@ -1,12 +1,6 @@
-﻿namespace CSV_api.Services.Constants
+﻿public enum StatusCodes
 {
-    public class Constants
-    {
-        public enum StatusCodes
-        {
-            New,
-            InProgress,
-            Ready
-        }
-    }
+    New,
+    InProgress,
+    Ready
 }
