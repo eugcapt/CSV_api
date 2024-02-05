@@ -17,12 +17,23 @@ namespace CSV_api.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get(int id) 
+        [Route("/GetAll/{taskId}")]
+        public JsonResult Get(int taskId)
         {
-            return new JsonResult(_commentService.GetAll(id));
+            return new JsonResult(_commentService.GetAll(taskId));
+        }
+
+        [HttpPost]
+        [Route("/Comment/Create/")]
+        public JsonResult Create(CommentDto comment)
+        {
+            _commentService.Create(comment);
+            return new JsonResult("OK");
+
         }
 
         [HttpPut]
+        [Route("/Comments/Update/")]
         public JsonResult Update(CommentDto comment)
         {
             bool success = true;

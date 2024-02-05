@@ -54,8 +54,8 @@ namespace CSV_api.Services.Implementations
         {
             var user = _db.Users.SingleOrDefault(u => u.UserId == id) ?? throw new Exception();
             var userDescription = new UserDescriptionDto
-            (user.Name,user.Surname,user.Email,user.RegDate);
-            
+            (user.Name, user.Surname, user.Email, user.RegDate);
+
             return userDescription;
 
         }
@@ -65,7 +65,7 @@ namespace CSV_api.Services.Implementations
             var userToUpdate = _db.Set<User>().FirstOrDefault(u => u.UserId == user.UserId);
             if (userToUpdate != null)
             { userToUpdate = user; }
-            _db.Update(userToUpdate) ;
+            _db.Update(userToUpdate);
             _db.SaveChanges();
             return userToUpdate ?? throw new Exception();
         }

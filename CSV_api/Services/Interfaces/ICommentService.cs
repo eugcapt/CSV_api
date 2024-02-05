@@ -6,7 +6,7 @@ namespace CSV_api.Services.Interfaces
     {
         public List<Comment> GetAll(int id);
         public Comment GetById(int id);
-        public Comment Create(Comment comment);
+        public Comment Create(CommentDto comment);
         public void Delete(int id);
         public Comment Update(CommentDto comment);
     }

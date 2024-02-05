@@ -16,26 +16,28 @@ namespace CSV_api.Controllers
         }
 
         [HttpGet]
+        [Route("/Project")]
         public JsonResult Get()
         {
             return new JsonResult(_projectService.GetAll());
         }
 
         [HttpGet]
-        [Route("description/{id}")]
+        [Route("/Project/Description/{id}")]
         public JsonResult GetDescription(int id)
         {
             return new JsonResult(_projectService.GetProjectDescription(id));
         }
 
         [HttpGet]
-        [Route("users/{id}")]
+        [Route("/Project/Users/{id}")]
         public JsonResult GetAllUsers(int id)
         {
             return new JsonResult(_projectService.GetAllUsers(id));
         }
 
         [HttpPost]
+        [Route("/Project/Create")]
         public JsonResult Create(Project project)
         {
             _projectService.Create(project);
@@ -43,6 +45,7 @@ namespace CSV_api.Controllers
         }
 
         [HttpDelete]
+        [Route("/Project/Delete")]
         public JsonResult Delete(int id)
         {
             bool success = true;
@@ -68,17 +71,17 @@ namespace CSV_api.Controllers
         }
 
         [HttpPost]
-        [Route("description")]
+        [Route("/Project/Update/Description")]
         public JsonResult UpdateDescription(int id, string description, ProjectDescriptionDto project)
         {
             return new JsonResult(_projectService.UpdateProjectDescription(id, description, project));
         }
 
         [HttpPost]
-        [Route("users")]
-        public JsonResult AddUserToProject(int userId, int projectId, UserUpdateProjectDto user)
+        [Route("/Project/Update/Users/{userId},{projectId}")]
+        public JsonResult AddUserToProject(int userId, int projectId)
         {
-            return new JsonResult(_projectService.AddUserToProject(userId, projectId, user));
+            return new JsonResult(_projectService.AddUserToProject(userId, projectId));
         }
     }
 }

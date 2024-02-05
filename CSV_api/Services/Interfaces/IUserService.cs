@@ -11,6 +11,5 @@ namespace CSV_api.Services.Interfaces
         public void Delete(int id);
         public List<User> GetProjectUsers(int projectID);
         public UserDescriptionDto GetUserDescription(int id);
-        
     }
 }

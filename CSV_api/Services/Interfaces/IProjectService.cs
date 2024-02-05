@@ -11,10 +11,10 @@ namespace CSV_api.Services.Interfaces
         public Project Create(Project project);
         public void Delete(int id);
         public ProjectDescriptionDto GetProjectDescription(int id);
-        public Project UpdateProjectDescription(int id,string description, ProjectDescriptionDto project);
-        public User AddUserToProject(int userId, int projectId, UserUpdateProjectDto user);
+        public Project UpdateProjectDescription(int id, string description, ProjectDescriptionDto project);
+        public User AddUserToProject(int userId, int projectId);
         public void DeleteUserFromProject(int userID);
         public List<User> GetAllUsers(int id);
-        
+
     }
 }

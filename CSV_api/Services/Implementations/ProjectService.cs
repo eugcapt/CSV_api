@@ -12,28 +12,16 @@ namespace CSV_api.Services.Implementations
         public readonly TestDbContext _db;
         public ProjectService(TestDbContext db)
         {
-            _db = db;   
+            _db = db;
         }
 
-        public User AddUserToProject(int userId, int projectId, UserUpdateProjectDto user)
+        public User AddUserToProject(int userId, int projectId)
         {
             var userToAdd = _db.Set<User>().FirstOrDefault(u => u.UserId == userId);
             _db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-            //var updatedUser = new User() { UserId = userToAdd.UserId, Login = userToAdd.Login, Name = userToAdd.Name, Email = userToAdd.Email, ProjectId = projectId, RegDate = userToAdd.RegDate, UpdateDate = userToAdd.UpdateDate }; 
-            //_db.Users.Attach(updatedUser).Property(x => x.ProjectId).IsModified = true;
-            //_db.SaveChangesAsync();
-            //return updatedUser;
-
-             var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<User,UserUpdateProjectDto>();
-            });
-            var mapper = new Mapper(config);
-
-            var userDescriptionUpdate = new UserUpdateProjectDto
-            (userToAdd.UserId, userToAdd.Login, userToAdd.Name, userToAdd.Surname, userToAdd.Email, userToAdd.RegDate, userToAdd.UpdateDate, projectId);
-            userToAdd = mapper.Map<User>(userDescriptionUpdate);
+            userToAdd.ProjectId = projectId;
             _db.Users.Attach(userToAdd).Property(x => x.ProjectId).IsModified = true;
+            _db.SaveChangesAsync();
             return userToAdd;
 
         }
@@ -75,16 +63,16 @@ namespace CSV_api.Services.Implementations
         {
             var project = _db.Projects.SingleOrDefault(p => p.ProjectId == id);
             var projectDescription = new ProjectDescriptionDto
-            (project.ProjectId,project.Description);
+            (project.ProjectId, project.Description);
 
             return projectDescription;
         }
 
         public Project UpdateProjectDescription(int id, string description, ProjectDescriptionDto project)
         {
-             _db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            _db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             var oldProject = _db.Projects.SingleOrDefault(p => p.ProjectId == id);
-            var newProject = new Project() { ProjectId = oldProject.ProjectId, Description = description, CreationDate = oldProject.CreationDate, UpdateDate = oldProject.UpdateDate }; 
+            var newProject = new Project() { ProjectId = oldProject.ProjectId, Description = description, CreationDate = oldProject.CreationDate, UpdateDate = oldProject.UpdateDate };
             _db.Projects.Attach(newProject).Property(x => x.Description).IsModified = true;
             _db.SaveChangesAsync();
             return newProject;

@@ -2,7 +2,6 @@
 using CSV_api.Models;
 using CSV_api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace CSV_api.Services.Implementations
 {
@@ -13,11 +12,12 @@ namespace CSV_api.Services.Implementations
         {
             _db = db;
         }
-        public Comment Create(Comment comment)
+        public Comment Create(CommentDto comment)
         {
-            _db.Comments.AddAsync(comment);
+            var commentCreate = new Comment() { CommentId = comment.CommentId, Text = comment.Text, CreationDate = comment.CreationDate, UpdateDate = comment.UpdateDate, TaskId = comment.TaskId };
+            _db.AddAsync(commentCreate);
             _db.SaveChangesAsync();
-            return comment;
+            return commentCreate;
         }
 
         public void Delete(int id)

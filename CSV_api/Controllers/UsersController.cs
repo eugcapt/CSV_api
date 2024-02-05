@@ -23,33 +23,35 @@ namespace CSV_api.Controllers
 
 
         [HttpGet]
+        [Route("/User")]
         public JsonResult Get()
         {
             return new JsonResult(_userService.GetAll());
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("/{id}")]
         public JsonResult Get(int id)
         {
             return new JsonResult(_userService.GetById(id));
         }
 
         [HttpGet]
-        [Route("GetProjectUsers/{id}")]
+        [Route("/GetProjectUsers/{id}")]
         public JsonResult GetUsers(int id)
         {
             return new JsonResult(_userService.GetProjectUsers(id));
         }
 
         [HttpGet]
-        [Route("GetUserDescription/{id}")]
+        [Route("/GetUserDescription/{id}")]
         public JsonResult GetUserDescription(int id)
         {
             return new JsonResult(_userService.GetUserDescription(id));
         }
 
         [HttpPut]
+        [Route("/Users/Update")]
         public JsonResult Update(User user)
         {
             bool success = true;
@@ -75,6 +77,7 @@ namespace CSV_api.Controllers
 
 
         [HttpPost]
+        [Route("/User/Create/")]
         public JsonResult Create(User user)
         {
             _userService.Create(user);
@@ -82,6 +85,7 @@ namespace CSV_api.Controllers
         }
 
         [HttpDelete]
+        [Route("/User/Delete/{id}")]
         public JsonResult Delete(int id)
         {
             bool success = true;

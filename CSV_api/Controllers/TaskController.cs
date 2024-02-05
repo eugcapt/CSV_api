@@ -16,30 +16,37 @@ namespace CSV_api.Controllers
             _taskService = taskService;
         }
 
-        [Route("{id}")]
+        [Route("/{Projectid}")]
         [HttpGet]
-        public JsonResult GetAll(int id) 
+        public JsonResult GetAll(int Projectid)
         {
-            return new JsonResult(_taskService.GetAll(id));
+            return new JsonResult(_taskService.GetAll(Projectid));
         }
 
-        [Route("byCode/{id}")]
+        [Route("/ByCode/{StatusCode}")]
         [HttpGet]
         public JsonResult GetAllByCode(byte StatusCode)
         {
             return new JsonResult(_taskService.GetTasksByCode(StatusCode));
         }
 
-       // [HttpPost]
-       // public JsonResult Create(Models.Task task)
-       // {
-       //     _taskService.Create(task);
-       //     return new JsonResult("OK");
-       // }
+        [Route("/ById/{id}")]
+        [HttpGet]
+        public JsonResult GetById(int id)
+        {
+            return new JsonResult(_taskService.GetOneTasksById(id));
+        }
 
-
+        [Route("/Create")]
+        [HttpPost]
+        public JsonResult Create(Models.Task task)
+        {
+            _taskService.Create(task);
+            return new JsonResult("OK");
+        }
 
         [HttpPost]
+        [Route("/Update")]
         public JsonResult Update([FromBody] TaskDto task)
         {
             bool success = true;
@@ -49,7 +56,6 @@ namespace CSV_api.Controllers
                 if (task != null)
                 {
                     updateUser = _taskService.Update(task);
-                    
                 }
                 else
                 {
@@ -64,8 +70,8 @@ namespace CSV_api.Controllers
             return new JsonResult(System.Text.Json.JsonSerializer.Serialize(task));
         }
 
-
         [HttpDelete]
+        [Route("/Delete")]
         public JsonResult Delete(int id)
         {
             bool success = true;

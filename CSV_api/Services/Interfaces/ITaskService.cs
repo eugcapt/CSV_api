@@ -6,7 +6,6 @@ namespace CSV_api.Services.Interfaces
     {
         public List<Models.Task> GetAll(int projectID);
         public Models.Task Create(Models.Task task);
-        
         public void Delete(int taskID);
         List<Models.Task> GetTasksByCode(byte statusCode);
         public Models.Task GetOneTasksById(int id);
